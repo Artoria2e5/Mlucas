@@ -13,19 +13,12 @@
  * macOS does not provide memrchr() in its standard library.
  * Define HAVE_MEMRCHR for platforms that do provide it.
  */
-#if defined(__APPLE__) && defined(__MACH__)
-    /* macOS/Darwin - memrchr is not available */
-    #undef HAVE_MEMRCHR
-#elif defined(__linux__)
-    /* Linux - memrchr is available */
+#if defined(__linux__)
+    /* Linux - memrchr is available (requires _GNU_SOURCE) */
     #define HAVE_MEMRCHR 1
-#elif defined(_WIN32) || defined(_WIN64)
-    /* Windows - memrchr is not available */
-    #undef HAVE_MEMRCHR
-#else
-    /* For other platforms, assume memrchr is not available by default */
-    #undef HAVE_MEMRCHR
 #endif
+/* For macOS, Windows, and other platforms, HAVE_MEMRCHR is not defined,
+ * indicating that memrchr is not available and our implementation will be used. */
 
 /*
  * Provide memrchr declaration for platforms that don't have it.

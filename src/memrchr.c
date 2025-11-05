@@ -27,6 +27,7 @@
 #ifndef HAVE_MEMRCHR
 
 #include <sys/types.h>
+#include <stddef.h>
 
 /*
  * Reverse memchr()
@@ -44,6 +45,6 @@ memrchr(const void *s, int c, size_t n)
                return (void *)cp;
        } while (--n != 0);
     }
-    return (void *)0;
+    return NULL;
 }
 #endif /* HAVE_MEMRCHR */
