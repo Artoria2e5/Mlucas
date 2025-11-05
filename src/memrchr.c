@@ -22,7 +22,7 @@
  * PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
  */
 
-#include <config.h>
+#include "config.h"
 
 #ifndef HAVE_MEMRCHR
 
