@@ -7,6 +7,8 @@
 #ifndef config_h_included
 #define config_h_included
 
+#include <sys/types.h>
+
 /*
  * macOS does not provide memrchr() in its standard library.
  * Define HAVE_MEMRCHR for platforms that do provide it.
@@ -23,6 +25,14 @@
 #else
     /* For other platforms, assume memrchr is not available by default */
     #undef HAVE_MEMRCHR
+#endif
+
+/*
+ * Provide memrchr declaration for platforms that don't have it.
+ * The implementation is in memrchr.c
+ */
+#ifndef HAVE_MEMRCHR
+void *memrchr(const void *s, int c, size_t n);
 #endif
 
 #endif /* config_h_included */
